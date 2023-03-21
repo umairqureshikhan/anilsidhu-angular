@@ -1,0 +1,30 @@
+nav img {
+    width: 100px;
+    margin-top: 50px;
+}
+nav ul{
+    float: right;
+    margin-top: 50px;
+
+
+}
+nav ul li {
+    display: inline-block;
+}
+nav ul li a{
+   text-decoration: none;
+   padding: 20px;
+   font-size: 20px;
+   color: black;
+   cursor: pointer;
+   
+
+}
+nav ul li a:hover{
+ color: aqua;
+    
+ 
+ }
+nav{
+    background-color: aqua;
+}

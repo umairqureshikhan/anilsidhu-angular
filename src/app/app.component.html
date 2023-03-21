@@ -1,0 +1,196 @@
+<h1>angular routing</h1>
+
+<a routerLink="about">about</a><br>
+<a routerLink="home">home</a><br>
+<a routerLink="user">user</a>
+<br>
+<br>
+<a routerLink="user/20">anil</a>
+<br>
+<a routerLink="user/30">sidhu</a>
+<br>
+<a routerLink="user/40">bhaskar</a>
+
+<router-outlet></router-outlet>
+
+<h2>watching angular tutorial {{titl}} </h2>
+
+<h3>{{hello}}</h3>
+<h4>{{getvalue()}}</h4>
+<app-login></app-login>
+
+<h4>click thus button and see name</h4>
+<button (click)="getname('anil sidhu','peter')">click me</button>
+<br><br>
+
+<button (click)="getval('hello')">get value</button>
+<br>
+<input type="text" #box (keypress)="getval(box.value)" placeholder="event key up">
+<br><br><br>
+<input type="text" #box1 (blur)="getval(box1.value)" placeholder="event key up">
+<h2>value get from input and display</h2>
+
+<input type="text" #box (keyup)="getdata(box.value)" placeholder="enter value" name="username">
+
+<button (click)="getdata(box.value)">click</button>
+<p>
+   Box value is: {{displayval}}
+</p>
+
+
+<br><br><br><br>
+<h1>this is counter</h1>
+<button (click)="counter('minus')">--</button>
+<p>{{count}}</p>
+<button (click)="counter('add')">++</button>
+
+<h1>this is property binding</h1>
+<input type="text" name="username" value="{{name}}" disabled="disable">
+<br><br>
+<input type="text" name="username" [value]=name [disabled]="disable">
+
+<h1>hide show using if</h1>
+<button (click)="show()">hide and shoe </button>
+<h4 *ngIf="hide">umair qureshi</h4>
+
+<ng-template [ngIf]="color ==='red' ">
+   <p style="color: red;">multiple if condition</p>
+
+</ng-template>
+
+
+<ng-template [ngIf]="colors ==='green' ">
+   <p style="color: green;">multiple if condition</p>
+
+</ng-template>
+
+<div [ngSwitch]="colour">switchcase
+   <h1 *ngSwitchCase="'red'" style="color: red;">
+      red color   
+   </h1>
+   <h1 *ngSwitchCase="'green'" style="color: green;">
+      green color
+   </h1>
+   <h1 *ngSwitchDefault>
+      default color
+   </h1>
+
+</div>
+for loop
+<h1>For loop</h1>
+<a *ngFor="let item of  [1,2,3]  ">hello <br></a><br><br>
+
+<a *ngFor="let item of  users">their name is:{{item}} <br></a><br><br>
+
+<p *ngFor="let item of userdetails">email:{{item.email}}--contact:{{item.phone}}--address:{{item.address}}</p>
+
+nested loop
+<h1>Nested loop</h1>
+<ul *ngFor="let item of items ">
+   <li>email: {{item.email}}<br></li>
+   <li>phone:{{item.phone}}<br></li>
+   <li> address: {{item.address}}</li>
+   <li>social accounts</li>
+   <ul *ngFor="let account of item.socialaccounts">
+      <li>
+         account:{{account}}
+      </li>
+   </ul>
+
+
+</ul>
+<h1>
+   click par color change
+</h1>
+<div [style.color]="colorr" [style.backgroundColor]="bgcolor">
+   hello
+
+</div>
+<button (click)="change()">click</button>
+
+<app-header></app-header>
+
+<h1>form</h1>
+<form #basicform="ngForm" (ngSubmit)="submit(basicform.value)">
+   <input type="text" ngModel name="name" placeholder="enter your name">
+   <br><br>
+   <input type="text" ngModel name="email" placeholder="enter your email">
+   <br><br>
+   <input type="text" ngModel name="password" placeholder="enter your password">
+   <br><br>
+   <button>register</button>
+
+
+</form>
+
+<ul>
+   <li>{{userdata.name}}</li>
+   <li>{{userdata.email}}</li>
+   <li>{{userdata.password}}</li>
+
+</ul>
+<br><br>
+<input type="text" placeholder="enter your task" #task>
+<br><br>
+
+<button (click)="addtask(task.value)">add task</button>
+
+<br><br>
+<ol *ngFor="let item of list">
+
+   <li>{{item.name}} <button (click)="removetask(item.id)">remove task</button></li>
+</ol>
+<br><br>
+<h1>send data child to parent component</h1>
+<p>random number genrate</p>
+<app-child [item]="data"></app-child>
+<button (click)="updatechild()">updata child</button>
+
+<h1>reusable component</h1>
+<p *ngFor=" let item of user">
+   <app-user [data]="item"></app-user>
+
+</p>
+<br><br>
+<h1>send data to parent componet from child</h1>
+<h2>{{dataa}}</h2>
+<app-another-child (updatedataevent)="updatedata($event)"></app-another-child>
+<br><br>
+<h1>two way binding</h1>
+<input type="text" [(ngModel)]="namee">
+<p>{{namee}}</p>
+<br><br>
+<h1>templatae refrenece variable</h1>
+<input type="text" placeholder="enter value" #box>
+<button (click)="getvaluefrominput(box.value)">call function</button>
+
+<h1>basic of pipes</h1>
+<p>{{titlee }}</p>
+<p>{{today |date:'fullDate'}}</p>
+<br><br>
+
+<h1>advanceof pipes</h1>
+<p>{{titlee | slice :3 :9 | uppercase }}</p>
+<p>{{userr | json | uppercase }}</p>
+<p>{{20 | currency :'USD' }}</p>
+<p>{{20 | currency :'GBP' }}</p>
+<p>{{20 | currency :'INR' }}</p>
+<h1>form validation</h1>
+<form [formGroup]="loginform" (ngSubmit)="loginuser()">
+   <input type="text" name="user" placeholder="enter your email" formControlName="user">
+   <br>
+   <span style="color: brown;" *ngIf="uservalidator && uservalidator.invalid">This field is not valid</span>
+   <br>
+   <input type="text" name="password" placeholder="enter your password" formControlName="password">
+   <br>
+   <span style="color: brown;" *ngIf="password && password.invalid">This field is not valid</span>
+   <br>
+   <button [disabled]="loginform.invalid">login</button>
+
+
+</form>
+
+
+<h1>dassd</h1>
+
+
